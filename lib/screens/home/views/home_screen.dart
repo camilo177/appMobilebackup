@@ -1,9 +1,10 @@
 import 'package:coinapp/add_expenses/add_expense.dart';
 import 'package:coinapp/add_expenses/blocs/create_categorybloc/create_category_bloc.dart';
 import 'package:coinapp/add_expenses/blocs/create_expensebloc/create_expense_bloc.dart';
-import 'package:coinapp/screens/home/blocs/bloc/get_expenses_bloc.dart';
+import 'package:coinapp/screens/home/blocs/get_expensesbloc/get_expenses_bloc.dart';
 import 'package:coinapp/screens/home/views/entry_screen.dart';
 import 'package:coinapp/screens/home/views/statistics_screen.dart';
+import 'package:coinapp/screens/profile/views/login_screen.dart';
 import 'package:expense_repo/expense_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
-  late Color selectedItem = Colors.black;
-  Color unselectedItem = Colors.grey;
+  Color selectedItemColor = const Color.fromARGB(255, 1, 21, 92);
+  Color unselectedItemColor = Colors.grey;
 
   @override
   void initState() {
-    selectedItem = Colors.black;
     super.initState();
     context.read<GetExpensesBloc>().add(GetExpenses());
   }
@@ -48,13 +48,30 @@ class _HomeScreenState extends State<HomeScreen> {
         }
 
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            backgroundColor: const Color.fromARGB(255, 77, 161, 239),
+            title: const Text('Coin App Home'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.person, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                  );
+                },
+              ),
+            ],
+          ),
           bottomNavigationBar: ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
             child: BottomNavigationBar(
+              currentIndex: index,
+              selectedItemColor: selectedItemColor,
+              unselectedItemColor: unselectedItemColor,
               onTap: (value) {
                 setState(() {
                   index = value;
@@ -62,25 +79,24 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               items: [
                 BottomNavigationBarItem(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: const Color.fromARGB(255, 66, 159, 235),
                   icon: Icon(
                     CupertinoIcons.home,
-                    color: index == 0 ? selectedItem : unselectedItem,
+                    color: index == 0 ? selectedItemColor : unselectedItemColor,
                   ),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
                     CupertinoIcons.graph_circle_fill,
-                    color: index == 1 ? selectedItem : unselectedItem,
+                    color: index == 1 ? selectedItemColor : unselectedItemColor,
                   ),
                   label: 'Stats',
                 ),
               ],
             ),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               Navigator.push(
@@ -104,11 +120,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             },
+            backgroundColor: const Color.fromARGB(255, 1, 21, 92),
             child: const Icon(CupertinoIcons.add),
           ),
           body: index == 0
-              ? EntryScreen(expenses: expenses) // Pass expenses to EntryScreen as a named parameter
-              : StatScreen(expenses: expenses), // Pass expenses to StatScreen
+              ? EntryScreen(expenses: expenses)
+              : StatScreen(expenses: expenses),
         );
       },
     );

@@ -26,7 +26,7 @@ class _AddExpenseState extends State<AddExpense> {
     dateController.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
     expense = ExpenseEntity(
       expenseId: '',
-      category: Category.empty, // Assuming Category has a default empty instance
+      category: Category.empty,
       date: DateTime.now(),
       amount: 0,
     );
@@ -42,6 +42,7 @@ class _AddExpenseState extends State<AddExpense> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Coin App Expenses'),
+          backgroundColor: const Color.fromARGB(255, 113, 193, 239),
         ),
         body: BlocListener<CreateExpenseBloc, CreateExpenseState>(
           listener: (context, state) {
@@ -77,35 +78,39 @@ class _AddExpenseState extends State<AddExpense> {
                 const SizedBox(height: 16.0),
                 TextFormField(
                   controller: expenseController,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Expense',
-                    prefixIcon: Icon(CupertinoIcons.money_dollar),
-                    border: OutlineInputBorder(),
+                    prefixIcon: const Icon(CupertinoIcons.money_dollar, color: Color.fromARGB(255, 1, 21, 92)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16.0),
                 TextFormField(
                   controller: dateController,
                   textAlignVertical: TextAlignVertical.center,
-                  readOnly: true, // Make the field read-only
+                  readOnly: true,
                   onTap: () async {
                     DateTime? newDate = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate: DateTime(2000), // Set a start date for the date picker
+                      firstDate: DateTime(2000),
                       lastDate: DateTime.now().add(const Duration(days: 365)),
                     );
                     if (newDate != null) {
                       setState(() {
                         dateController.text = DateFormat('dd/MM/yyyy').format(newDate);
-                        expense.date = newDate; // Update the expense object with the new date
+                        expense.date = newDate;
                       });
                     }
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Date',
-                    prefixIcon: Icon(CupertinoIcons.calendar_today),
-                    border: OutlineInputBorder(),
+                    prefixIcon: const Icon(CupertinoIcons.calendar_today, color: Color.fromARGB(255, 1, 21, 92)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16.0),
@@ -122,9 +127,9 @@ class _AddExpenseState extends State<AddExpense> {
                           child: BlocListener<CreateCategoryBloc, CreateCategoryState>(
                             listener: (context, state) {
                               if (state is CreateCategorySuccess) {
-                                Navigator.pop(ctx); // Close the dialog
+                                Navigator.pop(ctx);
                                 setState(() {
-                                  categoryController.text = nameController.text; // Update the main form's category field
+                                  categoryController.text = nameController.text;
                                   expense.category = Category(
                                     categoryId: const Uuid().v4(),
                                     name: nameController.text,
@@ -148,10 +153,12 @@ class _AddExpenseState extends State<AddExpense> {
                                   TextFormField(
                                     controller: nameController,
                                     textAlignVertical: TextAlignVertical.center,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
                                       hintText: 'New Category Name',
-                                      prefixIcon: Icon(CupertinoIcons.square_fill_line_vertical_square),
-                                      border: OutlineInputBorder(),
+                                      prefixIcon: const Icon(CupertinoIcons.square_fill_line_vertical_square, color: Color.fromARGB(255, 1, 21, 92)),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(height: 5),
@@ -162,7 +169,7 @@ class _AddExpenseState extends State<AddExpense> {
                                         if (nameController.text.isNotEmpty) {
                                           Category category = Category.empty;
                                           category.categoryId = const Uuid().v4();
-                                          category.name = nameController.text; // Update with the name from the dialog
+                                          category.name = nameController.text;
                                           category.totalExpenses = 0;
                                           context.read<CreateCategoryBloc>().add(CreateCategoryRequested(category));
                                         }
@@ -187,11 +194,13 @@ class _AddExpenseState extends State<AddExpense> {
                       },
                     );
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: 'Category',
-                    prefixIcon: Icon(CupertinoIcons.square_fill_line_vertical_square),
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(CupertinoIcons.add, color: Colors.grey),
+                    prefixIcon: const Icon(CupertinoIcons.square_fill_line_vertical_square, color: Color.fromARGB(255, 1, 21, 92)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    suffixIcon: const Icon(CupertinoIcons.add, color: Colors.grey),
                   ),
                 ),
                 const Spacer(),
@@ -199,7 +208,6 @@ class _AddExpenseState extends State<AddExpense> {
                   width: double.infinity,
                   child: TextButton(
                     onPressed: () {
-                      // Add functionality to handle expense submission
                       setState(() {
                         expense.expenseId = const Uuid().v4();
                         expense.amount = int.parse(expenseController.text);
@@ -234,3 +242,4 @@ class _AddExpenseState extends State<AddExpense> {
     super.dispose();
   }
 }
+

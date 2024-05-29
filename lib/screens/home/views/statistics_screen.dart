@@ -21,7 +21,7 @@ class StatScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Color.fromARGB(255, 1, 21, 92),
               ),
             ),
             const SizedBox(height: 16),

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:expense_repo/expense_repo.dart';
 
-//Código base tomado de repositorio de Flutter
-
 class MyChart extends StatefulWidget {
   final List<ExpenseEntity> expenses;
 
@@ -21,12 +19,13 @@ class _MyChartState extends State<MyChart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 1, 21, 92),
         title: const Text(
           'The summary of your transactions',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Colors.red,
+            color: Colors.white,
           ),
         ),
       ),
@@ -108,9 +107,9 @@ class _MyChartState extends State<MyChart> {
           shadows: shadows,
         ),
         badgeWidget: _Badge(
-          iconData: CupertinoIcons.circle_fill, // Placeholder icon
+          iconData: CupertinoIcons.circle_fill,
           size: widgetSize,
-          borderColor: Colors.black,
+          borderColor: const Color.fromARGB(255, 1, 21, 92),
         ),
         badgePositionPercentageOffset: .98,
       );
@@ -171,7 +170,7 @@ class _Badge extends StatelessWidget {
         child: Icon(
           iconData,
           size: size * 0.6,
-          color: Colors.black,
+          color: const Color.fromARGB(255, 1, 21, 92),
         ),
       ),
     );

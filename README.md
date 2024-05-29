@@ -6,11 +6,13 @@ A new Flutter project.
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+This project was based on the following github repositories (open source) along with videos:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+expense app: https://github.com/romain-girou/expenses_tracker
+auth: https://github.com/romain-girou/firebase_auth 
+Simple login:
+https://www.youtube.com/watch?v=IPMIcGTzxGc&t=1s&ab_channel=CodewithKavit
+ExpenseApp:
+https://www.youtube.com/watch?v=pyivtUs4ANo&ab_channel=RomainGirou
+PieChart: 
+https://github.com/imaNNeo/fl_chart/blob/main/repo_files/documentations/pie_chart.md

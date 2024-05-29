@@ -37,7 +37,7 @@ class EntryScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Icon(CupertinoIcons.person_fill),
+                    const Icon(CupertinoIcons.money_pound_circle_fill, color: Colors.blue),
                   ],
                 ),
                 const SizedBox(width: 16),
@@ -53,10 +53,11 @@ class EntryScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "John Doe",
+                        "Let's track your expenses",
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
+                          color: Colors.grey,
                         ),
                       ),
                     ],
@@ -132,7 +133,7 @@ class EntryScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black ,
+                              color: Colors.black,
                             ),
                           ),
                           Text(
