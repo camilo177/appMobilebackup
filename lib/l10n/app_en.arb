@@ -1,0 +1,20 @@
+{
+  "appTitle": "CoinApp",
+  "content": "Welcome to Coin App",
+  "welcome": "Let's track your expenses",
+  "balance": "Total Balance",
+  "expenses": "Expenses",
+  "message": "Recent Transactions",
+  "view": "View All",
+  "icon": "Home",
+  "iconS": "Stats",
+  "summaryOfTransactions": "The summary of your transactions",
+  "yourTransactions": "Your Transactions",
+  "add": "Add your expenses here",
+  "category": "Category",
+  "addE": "Add expense",
+  "newc": "Add Category",
+  "sec": "New Category Name",
+  "log": "Login",
+  "reg": "Register"
+}

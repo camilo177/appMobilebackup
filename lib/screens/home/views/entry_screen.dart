@@ -2,7 +2,7 @@ import 'package:expense_repo/expense_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:coinapp/generated/app_localizations.dart';
 class EntryScreen extends StatelessWidget {
   final List<ExpenseEntity> expenses;
 
